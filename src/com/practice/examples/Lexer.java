@@ -2,7 +2,7 @@ package com.practice.examples;
 import java.util.*;
 
 /*
-Find the longest char in sequence in given set of tokens.
+Find the longest word in sequence in given set of tokens.
 Input:  tokens = {"ab","aba","A"}; input = "ababbbaAab";
 Output: {"aba", "A", "ab"}
 */
