@@ -10,21 +10,7 @@ Time Complexity: O(V + E)
 
 public class FindLevelCountUsingBFS {
 
-    int V;
-    LinkedList<Integer> adj[];
-    FindLevelCountUsingBFS(int v) {
-        V = v;
-        adj = new LinkedList[v];
-        for(int i=0;i<V;i++) {
-            adj[i] = new LinkedList<>();
-        }
-    }
-
-    public void addEdge(int u, int w) {
-        adj[u].add(w);
-    }
-
-    public int printLevelBFS(int v, int nlevel) {
+    public int printLevelBFS(int v, int nlevel, int V, LinkedList<Integer>[] adj) {
         boolean[] visited = new boolean[V];
         int tempCount = 0;
         int level = 0;
@@ -56,8 +42,7 @@ public class FindLevelCountUsingBFS {
 
 
     public static void main(String args[]) {
-        FindLevelCountUsingBFS g = new FindLevelCountUsingBFS(4);
-
+        Graph g = new Graph(4);
         g.addEdge(0, 1);
         g.addEdge(0, 2);
         g.addEdge(1, 2);
@@ -65,10 +50,15 @@ public class FindLevelCountUsingBFS {
         g.addEdge(2, 3);
         g.addEdge(3, 3);
 
+        FindLevelCountUsingBFS g1 = new FindLevelCountUsingBFS();
+
+        int noOfVertices = g.getAllVertices();
+        LinkedList<Integer> adj[] = g.getAllEdges();
+
         System.out.println("Following is Breadth First Traversal "+
                 "(starting from vertex 2)");
 
-        int cnt = g.printLevelBFS(2, 3);
+        int cnt = g1.printLevelBFS(2, 2, noOfVertices, adj);
         System.out.print(cnt);
     }
 }
