@@ -1,6 +1,8 @@
 package com.practice.examples.sorting;
 
 
+import java.util.Arrays;
+
 public class HeapSort {
 
     private int heapSize;
@@ -53,35 +55,39 @@ public class HeapSort {
         System.out.println();
     }
 
-    private int extractMax(int[] num) {
+    private int[] sortedArray(int[] num) {
         if(currentSize <= 0) {
             System.out.println("Heap is empty");
-            return Integer.MIN_VALUE;
+            return null;
         }
-        if(currentSize == 1) {
+        while(currentSize >= 1) {
+            if (currentSize == 1) {
+                currentSize--;
+                return num;
+            }
+
+            int root = num[0];
+            num[0] = num[currentSize - 1];
+            num[currentSize - 1] = root;
             currentSize--;
-            return num[0];
+            heapify(0, num);
         }
-
-        int root = num[0];
-        num[0] = num[currentSize-1];
-        currentSize--;
-        heapify(0, num);
-
-        return root;
+        return num;
     }
 
 
     public static void main(String[] args) {
-        int[] arr= {10, 5, 2, 20, 15, 6};
+        int[] arr= {25, 5, 2, 20, 15, 10, 6};
 
         HeapSort hs = new HeapSort();
         hs.sort(arr);
 
-        System.out.println("Printing the Top 3 elements in array:");
-        System.out.println(hs.extractMax(arr));
-        System.out.println(hs.extractMax(arr));
-        System.out.println(hs.extractMax(arr));
+        System.out.println("After applying Heap Sort:");
+        int[] result = hs.sortedArray(arr);
+        if(result != null) {
+            System.out.println(Arrays.toString(result));
+        }
+
 
     }
 }
